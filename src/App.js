@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import './App.css';
-import Raduim, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 class App extends Component {
   state = {
@@ -47,10 +46,6 @@ class App extends Component {
       border: '1x solid blue',
       padding: '8x',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
 
     }
     let persons = null;
@@ -68,10 +63,6 @@ class App extends Component {
         </div>
       )
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'lightred',
-        color: 'black'
-      }
     }
 
     const classess = [];
@@ -83,7 +74,6 @@ class App extends Component {
     }
   
     return (
-      <StyleRoot>
         <div className="App">
           <h1>Hello React</h1>
           <p className={classess.join(' ')}>This is really working</p>
@@ -92,9 +82,8 @@ class App extends Component {
           onClick={this.toggelPersonHandler}>TogglePersons</button>
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Raduim(App);
+export default App;
