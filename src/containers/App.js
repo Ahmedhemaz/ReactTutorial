@@ -48,15 +48,13 @@ class App extends Component {
             changed={this.nameChangedHandler}
           />
     }
-
-  
     return (
         <div className={classes.App}>
           <Cockpit
+            title={this.props.appTitle}
             persons={this.state.persons}
             isPersonsShown={this.state.isPersonsShown}
-            clicked={this.toggelPersonHandler}
-          />
+            clicked={this.toggelPersonHandler}/>
          {persons}
         </div>
     );
