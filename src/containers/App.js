@@ -3,6 +3,10 @@ import classes from  './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
   state = {
     persons: [
       {id: 'qwdoasflkaf_1',name: 'ahmed', age:26},
@@ -11,6 +15,20 @@ class App extends Component {
     ],
     isPersonsShown: true
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  componentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
   submitBtnHandler = (newName) =>{
     this.setState({
       persons: [
@@ -39,6 +57,7 @@ class App extends Component {
     this.setState({persons: personsTemp});
   }
   render() {
+    console.log('[App.js] render');
     let persons = null;
     if(this.state.isPersonsShown) {
       persons = 
