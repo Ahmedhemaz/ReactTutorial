@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import Aux from '../../../hoc/Aux';
+import React, { Component, Fragment } from 'react';
+// import Aux from '../../../hoc/Aux';
 import classes from './Person.module.css';
+import withClass from '../../../hoc/withClass';
 class Person extends Component{
     shouldComponentUpdate(nextProps, next){
         console.log('[Person.js] shouldComponentUpdate');
@@ -14,14 +15,15 @@ class Person extends Component{
     
     render(){
         console.log('[Person.js] rendering...');
-
         return (
             // <div className={classes.Person}>
-            <Aux style={classes.Person}>
+            // <Aux classes={classes}>
+            <Fragment>
                 <p onClick={this.props.click}>My name is {this.props.name} and i'm {this.props.age} years old </p>
-                <p>{this.props.children}</p>
+                {/* <p>{this.props.children}</p> */}
                 <input type='text' onChange={this.props.nameChanged} value={this.props.name}/>
-            </Aux>
+            </Fragment>
+            // </Aux>
             // </div>
         );
     }
@@ -34,4 +36,4 @@ class Person extends Component{
 //     console.log('[Person.js] rendering...');
     
 // }
-export default Person;
+export default withClass(Person, classes.Person);
