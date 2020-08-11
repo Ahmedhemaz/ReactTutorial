@@ -13,17 +13,32 @@ class App extends Component {
       {id: 'sfohasfasf_2' ,name: 'shaf3y', age:27},
       {id: 'asdoqwijdos_3',name: 'ziad', age:28}
     ],
-    isPersonsShown: true
+    isPersonsShown: false
   }
 
-  static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedStateFromProps', props);
-    return state;
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[App.js] getDerivedStateFromProps', props);
+  //   return state;
+  // }
+
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
+  shouldComponentUpdate(nextProps, next){
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
   }
 
-  componentWillMount() {
-    console.log('[App.js] componentWillMount');
+  getSnapshotBeforeUpdate(prevProps, prevState){
+    console.log('[App.js] getSnapshotBeforeUpdate');
+    return null;
   }
+
+  componentDidUpdate(){
+    console.log('[App.js] componentDidUpdate');
+  }
+
 
   componentDidMount() {
     console.log('[App.js] componentDidMount');
