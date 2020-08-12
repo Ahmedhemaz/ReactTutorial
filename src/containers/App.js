@@ -13,7 +13,8 @@ class App extends Component {
       {id: 'sfohasfasf_2' ,name: 'shaf3y', age:27},
       {id: 'asdoqwijdos_3',name: 'ziad', age:28}
     ],
-    isPersonsShown: false
+    isPersonsShown: false,
+    changeCounter: 0
   }
 
   // static getDerivedStateFromProps(props, state) {
@@ -58,7 +59,12 @@ class App extends Component {
     personCopy.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = personCopy;
-    this.setState({persons:persons})
+    this.setState((prevState, props)=>{
+      return {
+        persons:persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    })
   }
 
   toggelPersonHandler = ()=>{
