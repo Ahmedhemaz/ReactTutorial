@@ -1,41 +1,11 @@
 import React, { Component } from 'react';
-import axiosInstance from '../../axios';
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
+import Posts from './Posts/Posts';
+import { Route } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
-    state = {
-        posts: [],
-        selectedPostId: null
-    }
-    componentDidMount() {
-        axiosInstance.get('/posts')
-        .then(response => {
-            const posts = response.data.slice(0, 8);
-            const updatedPosts = posts.map(post => {
-                return {
-                    ...post,
-                    author: 'Ahmed'
-                }
-            })
-            this.setState({posts: updatedPosts});
-        });
-        
-    }
-
-    selectPostHandler(id){
-        this.setState({selectedPostId: id});
-    }
+   
     render () {
-        const posts = this.state.posts.map(post => {
-            return <Post 
-                    key={post.id} 
-                    title={post.title} 
-                    author={post.author}
-                    clicked={()=> this.selectPostHandler(post.id)}/>
-        }) 
         return (
             <div className="Blog">
                 <header>
@@ -45,16 +15,14 @@ class Blog extends Component {
                             <li><a href='/new-post'>New Post</a></li>
                         </ul>
                     </nav>
-                </header>
-                <section className="Posts">
-                    {posts}
-                </section>
-                <section>
+                </header>    
+                <Route path="/" exact component={Posts}/>  
+                {/* <section>
                     <FullPost  id={this.state.selectedPostId} />
                 </section>
                 <section>
                     <NewPost />
-                </section>
+                </section> */}
             </div>
         );
     }
