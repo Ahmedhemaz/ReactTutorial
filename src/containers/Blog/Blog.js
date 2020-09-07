@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
-import { Route } from 'react-router-dom';
+import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
+import { Route, NavLink } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
@@ -11,18 +13,19 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><a href='/'>Home</a></li>
-                            <li><a href='/new-post'>New Post</a></li>
+                            <li><NavLink exact to='/'>Home</NavLink></li>
+                            <li><NavLink to={{
+                                pathname: '/new-post'
+                            }}>New Post</NavLink></li>
                         </ul>
                     </nav>
                 </header>    
-                <Route path="/" exact component={Posts}/>  
+                <Route path="/" exact component={Posts}/>
+                <Route path="/new-post"  component={NewPost}/>  
+                <Route path="/:id" component = {FullPost}/>
                 {/* <section>
                     <FullPost  id={this.state.selectedPostId} />
-                </section>
-                <section>
-                    <NewPost />
-                </section> */}
+                </section>*/}
             </div>
         );
     }
