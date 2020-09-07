@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { NavLink, Switch, Redirect } from 'react-router-dom';
+import PublicRoute from '../../components/utils/PublicRoute';
+import PrivateRoute from '../../components/utils/PrivateRoute';
 import './Blog.css';
 
 class Blog extends Component {
@@ -20,8 +22,8 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/posts/" component={Posts} />
-                    <Route path="/new-post" component={NewPost} />
+                    <PublicRoute path="/posts/" component={Posts} />
+                    <PrivateRoute authenticated={false} path="/new-post" component={NewPost} />
                     <Redirect from="/" to="/posts/" />
                 </Switch>
             </div>
