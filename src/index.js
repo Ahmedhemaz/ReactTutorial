@@ -10,13 +10,11 @@ axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(requestConfig => {
-    console.log(requestConfig);
     return requestConfig;
 });
 axios.interceptors.response.use(responseConfig => {
-    console.log(responseConfig);
     return responseConfig;
 })
 
-ReactDOM.render( <App />, document.getElementById( 'root' ) );
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

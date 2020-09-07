@@ -8,27 +8,36 @@ class FullPost extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
-        if(this.props.match.params.id){
-            axios.get(`/posts/${this.props.match.params.id}`)
-            .then(response => {
-                this.setState({loadedPost: response.data})
-            });
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.loadData();
         }
     }
 
-    deletePostHandler = ()=>{
-        axios.delete(`/posts/${this.props.id}`)
+    loadData() {
+        if (this.props.match.params.id) {
+            axios.get(`/posts/${this.props.match.params.id}`)
+                .then(response => {
+                    this.setState({ loadedPost: response.data })
+                });
+        }
+    }
+
+    deletePostHandler = () => {
+        axios.delete(`/posts/${this.props.match.params.id}`)
             .then(response => console.log(response));
     }
 
-    render () {
-        let post = <p style={{textAlign: "center"}}>Please select a Post!</p>;
-        if(!this.state.loadedPost) {
-            post = <p style={{textAlign: "center"}}>Loading...!</p>;
+    render() {
+        let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
+        if (!this.state.loadedPost) {
+            post = <p style={{ textAlign: "center" }}>Loading...!</p>;
             return post
         }
-        if(this.props.match.params.id){
+        if (this.props.match.params.id) {
             post = (
                 <div className="FullPost">
                     <h1>{this.state.loadedPost.title}</h1>
@@ -37,7 +46,7 @@ class FullPost extends Component {
                         <button className="Delete" onClick={this.deletePostHandler}>Delete</button>
                     </div>
                 </div>
-    
+
             );
         }
         return post;
