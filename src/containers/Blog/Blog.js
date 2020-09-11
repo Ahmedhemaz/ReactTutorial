@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import asyncComponent from '../../hoc/asyncComponent';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+// import NewPost from './NewPost/NewPost';
 import { NavLink, Switch, Redirect } from 'react-router-dom';
 import PublicRoute from '../../components/utils/PublicRoute';
 import PrivateRoute from '../../components/utils/PrivateRoute';
 import './Blog.css';
-
+const AsyncNewPost = asyncComponent(() => import('./NewPost/NewPost'));
 class Blog extends Component {
 
     render() {
@@ -23,7 +24,7 @@ class Blog extends Component {
                 </header>
                 <Switch>
                     <PublicRoute path="/posts/" component={Posts} />
-                    <PrivateRoute authenticated={false} path="/new-post" component={NewPost} />
+                    <PrivateRoute authenticated={true} path="/new-post" component={AsyncNewPost} />
                     <Redirect from="/" to="/posts/" />
                 </Switch>
             </div>

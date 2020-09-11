@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Post from '../../../components/Post/Post';
 import { Route, Link } from 'react-router-dom';
-import FullPost from '../FullPost/FullPost';
+import asyncComponent from '../../../hoc/asyncComponent';
 import axiosInstance from '../../../axios';
 import './Posts.css';
+const AsyncFullPost = asyncComponent(() => import('../FullPost/FullPost'));
+
 class Posts extends Component {
 
     state = {
@@ -43,7 +45,7 @@ class Posts extends Component {
                 <section className="Posts">
                     {posts}
                 </section>
-                <Route path={this.props.match.url + "/:id"} component={FullPost} />
+                <Route path={this.props.match.url + "/:id"} component={AsyncFullPost} />
 
             </div>
         )
