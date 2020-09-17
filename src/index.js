@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import counterReducer from './store/reducers/counter';
 import resultReducer from './store/reducers/result';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     ctr: counterReducer,
@@ -24,7 +25,7 @@ const logger = store => {
     }
 }
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
